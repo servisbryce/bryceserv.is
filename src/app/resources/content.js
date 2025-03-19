@@ -16,22 +16,22 @@ const social = [
   {
     name: "Email",
     icon: "email",
-    link: "mailto:example@gmail.com",
+    link: "mailto:bryceservis@bryceserv.is",
   },
   {
     name: "Pretty Good Privacy",
     icon: "pgp",
-    link: "https://google.com",
+    link: "#",
   },
   {
     name: "GitHub",
     icon: "github",
-    link: "https://github.com/once-ui-system/nextjs-starter",
+    link: "https://github.com/servisbryce/",
   },
   {
     name: "LinkedIn",
     icon: "linkedin",
-    link: "https://www.linkedin.com/company/once-ui/",
+    link: "https://www.linkedin.com/in/bryce-servis-328381357",
   }
 ];
 
@@ -67,14 +67,12 @@ const about = {
     title: "Introduction",
     description: (
       <>
-        Selene is a Jakarta-based design engineer with a passion for transforming complex challenges
-        into simple, elegant design solutions. Her projects spans digital interfaces, interactive
-        experiences, and the convergence of design and technology.
+        I am a hobbyist programmer and a student. I develop applications and libraries for Linux-based operating systems. But I also love tinkering and learning new technologies and languages to grow my skills as a programmer.
       </>
     ),
   },
   projects: {
-    display: true, // set to false to hide this section
+    display: false, // set to false to hide this section
     title: "projects Experience",
     experiences: [
       {
@@ -120,7 +118,7 @@ const about = {
     ],
   },
   studies: {
-    display: true, // set to false to hide this section
+    display: false, // set to false to hide this section
     title: "Studies",
     institutions: [
       {
@@ -134,7 +132,7 @@ const about = {
     ],
   },
   technical: {
-    display: true, // set to false to hide this section
+    display: false, // set to false to hide this section
     title: "Technical skills",
     skills: [
       {
