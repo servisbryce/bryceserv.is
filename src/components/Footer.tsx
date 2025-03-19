@@ -23,7 +23,14 @@ export const Footer = () => {
         horizontal="space-between"
         vertical="center"
       >
-        <Text variant="body-default-s" onBackground="neutral-strong">Published on March 18th, 2025.</Text>
+        <Text variant="body-default-s" onBackground="neutral-strong">bryceserv.is is a fork of {" "}
+            <SmartLink
+              style={{ marginLeft: "-0.125rem" }}
+              href="https://github.com/once-ui-system/magic-portfolio"
+            >
+              Magic Portfolio
+            </SmartLink>
+        </Text>
         <Flex gap="16">
           {social.map(
             (item) =>

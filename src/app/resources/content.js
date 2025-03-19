@@ -7,7 +7,7 @@ const person = {
     return `${this.firstName} ${this.lastName}`;
   },
   role: "Hobbyist Programmer",
-  avatar: "/images/avatar.jpg",
+  avatar: "/images/avatar.png",
   location: "US/Central", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
   languages: ["English"], // optional: Leave the array empty if you don't want to display languages
 };
@@ -39,11 +39,10 @@ const home = {
   label: "Home",
   title: `${person.name}'s Portfolio`,
   description: `Portfolio website showcasing my projects as a ${person.role}`,
-  headline: <>Hobbyist programmer</>,
+  headline: <>Hello, <br></br>I'm Bryce.</>,
   subline: (
     <>
-      I'm Selene, a design engineer at <InlineCode>FLY</InlineCode>, where I craft intuitive
-      <br /> user experiences. After hours, I build my own projects.
+      I am a hobbyist programmer and a student. I develop applications and libraries for Linux-based operating systems. But I also love tinkering and learning new technologies and languages to grow my skills as a programmer.
     </>
   ),
 };
