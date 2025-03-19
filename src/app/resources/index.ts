@@ -3,7 +3,6 @@ export {
   routes,
   effects,
   style,
-  display,
   baseURL,
 } from "@/app/resources/config";
 export {
