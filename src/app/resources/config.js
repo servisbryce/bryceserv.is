@@ -7,12 +7,6 @@ const routes = {
   "/blog": true,
 };
 
-// Enable password protection on selected routes
-// Set password in the .env file, refer to .env.example
-const protectedRoutes = {
-  "/projects/automate-design-handovers-with-a-figma-to-code-pipeline": true,
-};
-
 const style = {
   theme: "dark", // dark | light
   neutral: "slate", // sand | gray | slate
@@ -66,4 +60,4 @@ const display = {
   time: true,
 };
 
-export { routes, protectedRoutes, effects, style, display, baseURL };
+export { routes, effects, style, display, baseURL };
