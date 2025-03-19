@@ -1,0 +1,47 @@
+---
+
+title: "The Memory Allocator"
+publishedAt: "2025-03-18"
+images:
+  - "/images/gallery/thememoryallocator.jpg"
+summary: "A brief dive into the inner workings of heap allocators in the C programming language."
+team:
+  - name: "Bryce Servis"
+    role: "Author"
+    avatar: "/images/avatar.png"
+    linkedIn: "https://www.linkedin.com/in/bryce-servis-328381357"
+link: "https://github.com/servisbryce/malloc"
+
+---
+
+# What is the purpose of a memory allocator?
+A memory allocator traditionally refers to a library that abstracts the process of heap management to a program. A program uses a memory allocator to allocate a specific number of bytes from the kernel to store data it needs later.
+
+The program expects that the pointer to the segment of memory will never change unless requested by the program to do so.
+
+## What's a heap, and what's a segment?
+The heap is a pile of segments that grows upward toward the stack. It is composed of any integer multiple of the size of a page, typically 4 kilobytes.
+
+On most architectures, the minimum page size is 4 kilobytes and can't be smaller or larger. The kernel lends programs to these pages whenever they need to store data in memory.
+
+You may allocate a page of any size from the Linux kernel, but you'll run into significant performance and fragmentation issues at the kernel level sooner or later. So, only allocate integer multiples of the page size from the kernel.
+
+A segment is just a slice of the heap that a program allocates to store data. It may be any number of bytes and isn't restricted to being an integer multiple of the page size.
+
+# How is your memory allocator different?
+Traditionally, many applications on Linux-based operating systems use the glibc malloc, which has prided itself on being balanced in performance and efficiency. However, the glibc malloc codebase is complicated and immense, making it difficult for some to learn how a memory allocator is implemented in C.
+
+My memory allocator was designed by a novice C programmer to be performant, efficient, and comprehensible. Its entire structure, including comments, is contained in 622 lines of code.
+
+## Lazy operations.
+My memory allocator uses lazy operations. These operations are reserved for computationally expensive functions that don't necessarily need to be run constantly. They've been delegated to run only when the counter that holds the number of calls to the operation has reached a certain threshold. Upon reaching this threshold, the operation executes, and the counter for the number of calls is subtracted by one.
+
+These lazy operations significantly reduce latency on the majority of operations. However, if the thresholds for these lazy operations aren't balanced correctly, they may lead to more program memory usage.
+
+## No arenas or binning.
+Furthermore, my memory allocator doesn't use arenas or bins, which are common in many memory allocators. Arenas or bins work by processing and sorting free segments based on their sizes, then picking one and providing it to the program. However, arenas and bins add significant design complexity, so I've excluded them entirely from my memory allocator implementation.
+
+# Is this production ready?
+No, this memory allocator wasn't designed for production. Although I've ensured that it remains stable under various standard conditions, I'm sure that it is not as hardened or battle-tested as glibc malloc.
+
+This memory allocator is a learning tool that demonstrates what a simple yet fast and efficient memory allocator in the C programming language looks like.
