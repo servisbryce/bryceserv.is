@@ -25,6 +25,8 @@ import {
   HiOutlineEyeSlash,
 } from "react-icons/hi2";
 
+import { LuKeySquare } from "react-icons/lu";
+
 import {
   PiHouseDuotone,
   PiUserCircleDuotone,
@@ -66,4 +68,5 @@ export const iconLibrary: Record<string, IconType> = {
   x: FaXTwitter,
   clipboard: HiClipboard,
   arrowUpRightFromSquare: HiArrowTopRightOnSquare,
+  pgp: LuKeySquare
 };

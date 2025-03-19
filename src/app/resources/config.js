@@ -55,9 +55,4 @@ const effects = {
   },
 };
 
-const display = {
-  location: true,
-  time: true,
-};
-
-export { routes, effects, style, display, baseURL };
+export { routes, effects, style, baseURL };

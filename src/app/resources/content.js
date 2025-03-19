@@ -8,13 +8,21 @@ const person = {
   },
   role: "Hobbyist Programmer",
   avatar: "/images/avatar.jpg",
-  location: "Asia/Jakarta", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
+  location: "US/Central", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
   languages: ["English"], // optional: Leave the array empty if you don't want to display languages
 };
 
 const social = [
-  // Links are automatically displayed.
-  // Import new icons in /once-ui/icons.ts
+  {
+    name: "Email",
+    icon: "email",
+    link: "mailto:example@gmail.com",
+  },
+  {
+    name: "Pretty Good Privacy",
+    icon: "pgp",
+    link: "https://google.com",
+  },
   {
     name: "GitHub",
     icon: "github",
@@ -24,17 +32,7 @@ const social = [
     name: "LinkedIn",
     icon: "linkedin",
     link: "https://www.linkedin.com/company/once-ui/",
-  },
-  {
-    name: "X",
-    icon: "x",
-    link: "",
-  },
-  {
-    name: "Email",
-    icon: "email",
-    link: "mailto:example@gmail.com",
-  },
+  }
 ];
 
 const home = {
@@ -62,7 +60,7 @@ const about = {
     display: true,
   },
   calendar: {
-    display: true,
+    display: false,
     link: "https://cal.com",
   },
   intro: {
@@ -186,7 +184,7 @@ const blog = {
 
 const projects = {
   label: "Projects",
-  title: "My projects",
+  title: "Projects",
   description: `Design and dev projects by ${person.name}`,
   // Create new project pages by adding a new .mdx file to app/blog/posts
   // All projects will be listed on the /home and /projects routes
