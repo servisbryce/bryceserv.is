@@ -3,45 +3,41 @@
 title: "bryceserv.is"
 publishedAt: "2025-03-19"
 images:
-  - "/images/gallery/thememoryallocator.jpg"
-summary: "A brief dive into the inner workings of heap allocators in the C programming language."
+  - "/images/gallery/bryceserv.is.png"
+summary: "My personal website and portfolio."
 team:
   - name: "Bryce Servis"
     role: "Author"
     avatar: "/images/avatar.png"
     linkedIn: "https://www.linkedin.com/in/bryce-servis-328381357"
-link: "https://github.com/servisbryce/malloc"
+link: "https://github.com/servisbryce/bryceserv.is"
 
 ---
 
-# What is the purpose of a memory allocator?
-A memory allocator traditionally refers to a library that abstracts the process of heap management to a program. A program uses a memory allocator to allocate a specific number of bytes from the kernel to store data it needs later.
+# Design Criteria
+I wanted a personal website that could act as my blog, project portfolio, and biography and be flexible to customize and expand later.
 
-The program expects that the pointer to the segment of memory will never change unless requested by the program to do so.
+I didn't want to reinvent the wheel either, and I didn't want to spend days getting my site up and running. Therefore, I needed to use an excellent template and fork it to customize it.
 
-## What's a heap, and what's a segment?
-The heap is a pile of segments that grows upward toward the stack. It is composed of any integer multiple of the size of a page, typically 4 kilobytes.
+# The Framework
+At first, I wanted to use Nuxt. Still, I encountered considerable issues that made the development experience painful and slow—from my personal experience, trying to use design systems like Preline was like pulling teeth.
 
-On most architectures, the minimum page size is 4 kilobytes and can't be smaller or larger. The kernel lends programs to these pages whenever they need to store data in memory.
+Eventually, I landed on Nuxt's neighbor, Next.js, and I immediately fell in love with its simplicity, superb developer experience, and broad support. Furthermore, Next.js was natively supported by Vercel which made deploying my application a breeze.
 
-You may allocate a page of any size from the Linux kernel, but you'll run into significant performance and fragmentation issues at the kernel level sooner or later. So, only allocate integer multiples of the page size from the kernel.
+# The Template
+Once I had decided on the framework I'd be using; I needed to find a flexible template that didn't require me to reinvent the wheel. 
 
-A segment is just a slice of the heap that a program allocates to store data. It may be any number of bytes and isn't restricted to being an integer multiple of the page size.
+After browsing GitHub, I landed on Magic Portfolio powered by Once UI. The design of Magic Portfolio was perfect, simple, and easy to modify to my liking.
 
-# How is your memory allocator different?
-Traditionally, many applications on Linux-based operating systems use the glibc malloc, which has prided itself on being balanced in performance and efficiency. However, the glibc malloc codebase is complicated and immense, making it difficult for some to learn how a memory allocator is implemented in C.
+# The Fork
+I immediately got to work and forked Magic Portfolio. I made several changes, such as renaming tabs to make them more appropriate, trimming down some parts I didn't need, like password-protected routes, and writing a few project posts (including the one you're reading right now).
 
-My memory allocator was designed by a novice C programmer to be performant, efficient, and comprehensible. Its entire structure, including comments, is contained in 622 lines of code.
 
-## Lazy operations.
-My memory allocator uses lazy operations. These operations are reserved for computationally expensive functions that don't necessarily need to be run constantly. They've been delegated to run only when the counter that holds the number of calls to the operation has reached a certain threshold. Upon reaching this threshold, the operation executes, and the counter for the number of calls is subtracted by one.
+I plan to implement significant additions to modify the website's design and style. Specifically, I wish to alter the navigation bar to make it larger and a glassy blur. I also want to write more project posts on GitHub for all my finished projects.
 
-These lazy operations significantly reduce latency on the majority of operations. However, if the thresholds for these lazy operations aren't balanced correctly, they may lead to more program memory usage.
+# Vercel
+Vercel made deploying my website a dream. Previously, I used a virtual private server to host my applications; however, it was clunky and generally slower than I wanted.
 
-## No arenas or binning.
-Furthermore, my memory allocator doesn't use arenas or bins, which are common in many memory allocators. Arenas or bins work by processing and sorting free segments based on their sizes, then picking one and providing it to the program. However, arenas and bins add significant design complexity, so I've excluded them entirely from my memory allocator implementation.
+Thankfully, Vercel exists. Vercel is a fantastic platform that allows you to deploy your application almost straight from your GitHub account. Push to central, and Vercel will take care of the rest by building and deploying your web application.
 
-# Is this production ready?
-No, this memory allocator wasn't designed for production. Although I've ensured that it remains stable under various standard conditions, I'm sure that it is not as hardened or battle-tested as glibc malloc.
-
-This memory allocator is a learning tool that demonstrates what a simple yet fast and efficient memory allocator in the C programming language looks like.
+I also migrated over from Cloudflare to Vercel for my proxy solution.
