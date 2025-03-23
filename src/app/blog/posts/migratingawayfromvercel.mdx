@@ -2,7 +2,7 @@
 
 title: "Migrating Away from Vercel"
 publishedAt: "2025-03-23"
-image: "/images/gallery/migratingawayfromvercel.jpg"
+image: "/images/gallery/migratingawayfromvercel.png"
 summary: "The migration away from Vercel to my machines."
 tag: "Journal"
 
@@ -23,39 +23,9 @@ My application doesn't rely on fetching data and rendering it into the page beca
 # Porting my Next application for static site generation.
 I had to make some changes to Next's configuration to port my application to run in a static deployment environment.
 
-```ts
-const nextConfig = {
-  output: 'export',
-  images: {
-
-    unoptimized: true
-
- },
-  pageExtensions: ["ts", "tsx", "md", "mdx"],
-};```
-
 The two additions were the output and image parameters. The output parameter must be set for Next to generate the necessary files for directly hosting the website, and the image parameters were required to prevent Next from making broken image requests.
 
 I then built my application and pushed the outputs straight to GitHub.
 
 # Deployment
-Once my virtual private server was hardened, I opened a shell on the server and pulled down the repository where my application was stored. I pointed ```nginx``` to the output directory in my pulled repository.
-
-Here's the ```nginx``` configuration I used.
-
-```
-server {
-
-    listen 80;
-    listen [::]:80;
-    listen 443 ssl;
-    listen [::]:443 ssl;
-    server_name bryceserv.is;
-    root /var/www/bryceserv.is/out;
-    index index.html;
-    ssl_certificate /etc/letsencrypt/live/bryceserv.is/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/bryceserv.is/privkey.pem;
-    error_page 404 /404.html;
-
-}
-```
+Once my virtual private server was hardened, I opened a shell on the server and pulled down the repository where my application was stored. I pointed ```nginx``` to the output directory in my pulled repository. Everything was working exceptionally well.
