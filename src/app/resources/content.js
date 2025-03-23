@@ -21,7 +21,7 @@ const social = [
   {
     name: "Pretty Good Privacy",
     icon: "pgp",
-    link: "/BAD77207.gpg",
+    link: "/907873A1.asc",
   },
   {
     name: "GitHub",
