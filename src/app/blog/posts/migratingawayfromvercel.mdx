@@ -8,3 +8,54 @@ tag: "Journal"
 
 ---
 
+# Why move away from Vercel?
+Vercel is an outstanding platform on which to deploy your Next applications. However, it conflicts with my wish to start self-hosting my websites and services for digital sovereignty. Vercel is a fantastic website deployment platform, but that's about it. It's annoying and difficult to integrate with other services.
+
+## What will take Vercel's place?
+I'm replacing Vercel with virtual private servers from my favorite cloud provider, Vultr. From my personal experience over the past few years, Vultr hasn't caused me any issues other than blocking outbound traffic on ports that spammers use.
+
+# Rolling my own infrastructure.
+My infrastructure is straightforward. I will deploy a virtual private server, statically generate my website, and upload those statically generated files to my server. I'll then host the files using ```nginx```.
+
+## Why not just reverse proxy your application instead of statically generating it and hosting it directly?
+My application doesn't rely on fetching data and rendering it into the page because it's a blog and portfolio site. Therefore, deploying the statically generated files and hosting them directly using ```nginx``` is logically easier.
+
+# Porting my Next application for static site generation.
+I had to make some changes to Next's configuration to port my application to run in a static deployment environment.
+
+```ts
+const nextConfig = {
+  output: 'export',
+  images: {
+
+    unoptimized: true
+
+ },
+  pageExtensions: ["ts", "tsx", "md", "mdx"],
+};```
+
+The two additions were the output and image parameters. The output parameter must be set for Next to generate the necessary files for directly hosting the website, and the image parameters were required to prevent Next from making broken image requests.
+
+I then built my application and pushed the outputs straight to GitHub.
+
+# Deployment
+Once my virtual private server was hardened, I opened a shell on the server and pulled down the repository where my application was stored. I pointed ```nginx``` to the output directory in my pulled repository.
+
+Here's the ```nginx``` configuration I used.
+
+```
+server {
+
+    listen 80;
+    listen [::]:80;
+    listen 443 ssl;
+    listen [::]:443 ssl;
+    server_name bryceserv.is;
+    root /var/www/bryceserv.is/out;
+    index index.html;
+    ssl_certificate /etc/letsencrypt/live/bryceserv.is/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/bryceserv.is/privkey.pem;
+    error_page 404 /404.html;
+
+}
+```
