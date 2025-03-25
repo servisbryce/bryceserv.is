@@ -9,7 +9,7 @@ tag: "Journal"
 ---
 
 # Why move away from Vercel?
-Vercel is an outstanding platform on which to deploy your Next applications. However, it conflicts with my wish to start self-hosting my websites and services for digital sovereignty. Vercel is a fantastic website deployment platform, but that's about it. It's annoying and difficult to integrate with other services.
+Vercel is an outstanding platform on which to deploy your Next web applications. However, it conflicts with my wish to start self-hosting my websites and services for digital sovereignty. Vercel is a fantastic website deployment platform, but that's about it. It's annoying and difficult to integrate with other services.
 
 ## What will take Vercel's place?
 I'm replacing Vercel with virtual private servers from my favorite cloud provider, Vultr. From my personal experience over the past few years, Vultr hasn't caused me any issues other than blocking outbound traffic on ports that spammers use.
@@ -21,11 +21,16 @@ My infrastructure is straightforward. I will deploy a virtual private server, st
 My application doesn't rely on fetching data and rendering it into the page because it's a blog and portfolio site. Therefore, deploying the statically generated files and hosting them directly using ```nginx``` is logically easier.
 
 # Porting my Next application for static site generation.
-I had to make some changes to Next's configuration to port my application to run in a static deployment environment.
+I had to change Next's configuration to port my application to a static deployment environment.
 
 The two additions were the output and image parameters. The output parameter must be set for Next to generate the necessary files for directly hosting the website, and the image parameters were required to prevent Next from making broken image requests.
 
 I then built my application and pushed the outputs straight to GitHub.
 
-# Deployment
+# My deployment.
 Once my virtual private server was hardened, I opened a shell on the server and pulled down the repository where my application was stored. I pointed ```nginx``` to the output directory in my pulled repository. Everything was working exceptionally well.
+
+# Update as of March 24th, 2025.
+I have somewhat dodged a bullet. Vercel and Next were hit with a critical vulnerability that permitted users to bypass middleware. Despite the critical vulnerability, it wouldn't have affected me when I was using Vercel because my web application doesn't rely on middleware for anything mission-critical.
+
+Regardless, this vulnerability didn't affect me because I self-hosted this website using static server generation on a virtual private server.
