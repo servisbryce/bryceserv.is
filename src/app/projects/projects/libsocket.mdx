@@ -20,3 +20,9 @@ A socket library reduces your program's design complexity, allowing you to focus
 Furthermore, you must also implement Transport Layer Security overtop of your application, doubling the complexity as now you must rewrite your code for OpenSSL.
 
 ## What makes your socket library different?
+My socket library is application layer and topology agnostic, meaning that you can opt to use encryption or avoid it entirely. You may also implement this socket library from a client or server perspective. You only have to configure the socket context to your liking, and then you may write your code once and have it work on both raw ```TCP``` and ```TLS TCP```.
+
+Furthermore, my socket library abstracts the process of creating contexts, binding to sockets, or reading and writing from said sockets. It's as simple and as streamlined as I could make it without encroaching on the developer experience.
+
+# My plans for the future.
+I plan on eventually implementing keepalives and concurrent socket handling through whatever avenue is the most performant and accessible. I'm likely going to assign user-defined functions that are run whenever a new socket is accepted on the server side. On the client side, a user-defined function will run but in just one thread over one socket.
