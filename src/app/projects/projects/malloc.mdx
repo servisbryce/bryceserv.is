@@ -29,7 +29,7 @@ You may allocate a page of any size from the Linux kernel, but you'll run into s
 A segment is just a slice of the heap that a program allocates to store data. It may be any number of bytes and isn't restricted to being an integer multiple of the page size.
 
 # How is your memory allocator different?
-Traditionally, many applications on Linux-based operating systems use the glibc malloc, which has prided itself on being balanced in performance and efficiency. However, the glibc malloc codebase is complicated and immense, making it difficult for some to learn how a memory allocator is implemented in C.
+Traditionally, many applications on Linux-based operating systems use the ```glibc malloc```, which has prided itself on being balanced in performance and efficiency. However, the ```glibc malloc``` codebase is complicated and immense, making it difficult for some to learn how a memory allocator is implemented in C.
 
 My memory allocator was designed by a novice C programmer to be performant, efficient, and comprehensible. Its entire structure, including comments, is contained in 622 lines of code.
 
@@ -42,6 +42,6 @@ These lazy operations significantly reduce latency on the majority of operations
 Furthermore, my memory allocator doesn't use arenas or bins, which are common in many memory allocators. Arenas or bins work by processing and sorting free segments based on their sizes, then picking one and providing it to the program. However, arenas and bins add significant design complexity, so I've excluded them entirely from my memory allocator implementation.
 
 # Is this production ready?
-No, this memory allocator wasn't designed for production. Although I've ensured that it remains stable under various standard conditions, I'm sure that it is not as hardened or battle-tested as glibc malloc.
+No, this memory allocator wasn't designed for production. Although I've ensured that it remains stable under various standard conditions, I'm sure that it is not as hardened or battle-tested as ```glibc malloc```.
 
 This memory allocator is a learning tool that demonstrates what a simple yet fast and efficient memory allocator in the C programming language looks like.

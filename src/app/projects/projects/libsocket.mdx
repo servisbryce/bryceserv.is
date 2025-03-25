@@ -20,9 +20,12 @@ A socket library reduces your program's design complexity, allowing you to focus
 Furthermore, you must also implement Transport Layer Security overtop of your application, doubling the complexity as now you must rewrite your code for OpenSSL.
 
 ## What makes your socket library different?
-My socket library is application layer and topology agnostic, meaning that you can opt to use encryption or avoid it entirely. You may also implement this socket library from a client or server perspective. You only have to configure the socket context to your liking, and then you may write your code once and have it work on both raw ```TCP``` and ```TLS TCP```.
+My socket library is application layer and topology agnostic, meaning that you can opt to use encryption or avoid it entirely. You may also implement this socket library from a client or server perspective. You only have to configure the socket context to your liking, and then you may write your code once and have it work on both unencrypted traffic and encrypted traffic.
 
 Furthermore, my socket library abstracts the process of creating contexts, binding to sockets, or reading and writing from said sockets. It's as simple and as streamlined as I could make it without encroaching on the developer experience.
 
+# The developer experience.
+My socket library is highly robust and accessible. To start, create a socket context: you'll need the address you'll be binding to or connecting to, along with the port, and whether you will be acting as a server or a client. But wait, what if you want to add Transport Layer Security? Use the create Transport Layer Security function and plug in your socket context, certificate, and private key files, and you're ready to go; you don't even have to rewrite your old socket code for unencrypted traffic handling as it automatically adjusts to the new changes that you've made with the context.
+
 # My plans for the future.
-I plan on eventually implementing keepalives and concurrent socket handling through whatever avenue is the most performant and accessible. I'm likely going to assign user-defined functions that are run whenever a new socket is accepted on the server side. On the client side, a user-defined function will run but in just one thread over one socket.
+I plan on eventually implementing keepalives and concurrent socket handling through whatever avenue is the most performant and accessible. I will likely assign user-defined functions to run whenever a new socket is accepted on the server side. A user-defined function will run in just one thread over one socket on the client side.
