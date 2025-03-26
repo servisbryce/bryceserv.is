@@ -29,7 +29,7 @@ const Route: React.FC<Routes> = ({ children }) => {
           return routes[pathname as keyof typeof routes];
         }
 
-        const dynamicRoutes = ["/blog", "/projects"] as const;
+        const dynamicRoutes = ["/blog", "/projects", "/about"] as const;
         for (const route of dynamicRoutes) {
           if (pathname?.startsWith(route) && routes[route]) {
             return true;

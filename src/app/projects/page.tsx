@@ -34,7 +34,7 @@ export async function generateMetadata() {
 }
 
 export default function Project() {
-  let allProjects = getPosts(["src", "app", "projects", "projects"]);
+  let allProjects = getPosts(["src", "app", "projects", "posts"]);
 
   return (
     <Column maxWidth="m">
