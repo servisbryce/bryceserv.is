@@ -8,7 +8,7 @@ const withMDX = mdx({
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  trailingSlash: false,
+  trailingSlash: true,
   images: {
 
     unoptimized: true
