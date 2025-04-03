@@ -1,9 +1,236 @@
 ---
 
-title: "Security Measures for a Virtual Private Server"
+title: "Security Measures for Debian Linux Servers"
 publishedAt: "2025-04-02"
 image: "/images/gallery/securitymeasuresforavirtualprivateserver.jpg"
-summary: "If you wish to contact me, please read this to ensure that you are able to communicate effectively with me."
+summary: "A series of best practices to secure your virtual private server."
 tag: "Journal"
 
 ---
+
+# Which security measures should I implement?
+Several techniques, ranging in complexity, can strengthen the security of your virtual private server. Implementing basic security measures to harden the security of your virtual private servers will prevent most attackers from infiltrating your server. However, you may wish to implement more sophisticated security measures to thwart skilled malicious actors from trying to break into your servers.
+
+Depending on your threat model, you should implement either the baseline security measures or the baseline and advanced security measures.
+
+# Baseline Security Measures
+These baseline security measures should be followed on any machine where applicable. They are sufficient to stop the overwhelming majority of attackers and automated malicious bots on the Internet.
+
+## Enable your firewall.
+Simply said, you need a firewall. If you have any machine facing the Internet Internet, you should always run a firewall solution on it and upstream in the network, if applicable. A firewall can effectively prevent attackers from accessing ports on your server that you did not intend to be accessible.
+
+My favorite solution for firewalls on Linux is ```ufw```.
+
+On Debian Linux, you can install ```ufw``` using the following command.
+
+```bash
+sudo apt install ufw
+```
+
+Once installed, allow port ``22``, the ```SSH``` default port, to prevent locking yourself out of your server. You may do so using the following command.
+
+```bash
+sudo ufw allow 22
+```
+
+Using the following command, you may check which processes and ports are listening on your machine.
+
+```bash
+ss -lpnt
+```
+
+Ensure that if you intend for any ports to be accessible by others on the Internet, you allow them by using the command that allows port ``` 22 ``` access.
+
+Once you've allowed the ports you wished to be accessible by anybody on the Internet, please double-check your changes before reloading your firewall. You may do so using the following command.
+
+```bash
+ufw status
+```
+
+Once you've reviewed your firewall ruleset, you may apply them to your server using the following commands.
+
+```bash
+ufw reload
+ufw enable
+```
+
+Congrats, you now have a firewall protecting your server!
+
+## Stop using ```root``` as your default user!
+Stop immediately if you are using ```root``` as your default user. Using ```root``` as your default user is extremely dangerous because processes running under root effectively have access to your entire server. Instead, you should create another user with ```sudo``` privileges. Whenever you need ```root``` permissions to do something, you should invoke those permissions temporarily using ```sudo```.
+
+As ```root``` on Debian Linux, use these commands to create a new user, set their password, and grant them access to escalate privileges safely using ```sudo```.
+
+```adduser``` creates a new user on Debian Linux, designates their password, and creates their home directory.
+
+```bash
+adduser exampleuser
+```
+
+Now, grant ```exampleuser``` the ```sudo``` group which will permit them to use the ```sudo``` utility to safely escalate privileges temporarily through the shell.
+
+```bash
+usermod -a -G sudo exampleuser
+```
+
+We're not done yet, though. Ensure that the ```sudo``` group is permitted to use ```sudo``` by checking ```/etc/sudoers```.
+
+It's best practice to use ```visudo``` to edit ```/etc/sudoers```. However, you may use any text editor to read and/or edit the file.
+
+If you don't see this line in your ```/etc/sudoers```, make sure you add it so ```sudo``` works! If you see the line but it's commented out, please ensure that you uncomment it so it looks exactly like the text below.
+
+```bash
+%sudo ALL=(ALL) ALL
+```
+
+You may now switch to your newly created user using the following command.
+
+```bash
+su exampleuser
+```
+## Hardening the Secure Shell
+Are you using password authentication to log into your server over ```SSH```? If you are, you are at a significantly high risk for automated bots trying to compromise your server by brute force your password from many different ```IP addresses```. Malicious actors often create bots that scan the Internet for servers with open ```SSH``` ports, like yours! Once they've discovered that you have an open ```SSH``` port, they will spam thousands of commonly used passwords until they get into your server. Humans are inherently flawed when generating unique, memorable, and strong passwords. Thankfully, there's a better way to authenticate yourself.
+
+Through the power of ```SSH``` authentication keys, you can automatically log into your server remotely using the power of encryption.
+
+You may generate a unique ```ED25519 SSH``` keypair using the command below. ```ED25519``` is regarded as one of our strongest, fastest, and most efficient elliptic curve signing algorithms available.
+
+Also, whenever you generate this keypair, please set a password during the interactive prompt to protect your private key. Otherwise, somebody with access to your user or disks could pull your keypair and use it as if they were you!
+
+```bash
+ssh-keygen -t ed25519
+``` 
+
+Now that you've created a keypair, we must copy your public key to your server. Thankfully, ```SSH``` already has a utility for this! Use the command below to transfer your public keys to your server.
+
+```bash
+ssh-copy-id -i ~/.ssh/id_ed25519.pub exampleuser@yourserverip
+```
+
+After setting up your public key authentication on your server, try logging in.
+
+```bash
+ssh exampleuser@yourserverip
+```
+
+Enter your private key decryption password if you set one. Did you notice anything different? You didn't have to enter your remote user's password. Pure magic. Now that public key authentication is working let's harden your ```SSH``` configuration.
+
+You may use the command below to peek at your ```SSH``` configuration.
+
+```bash
+sudo nano /etc/ssh/sshd_config
+```
+
+First, disable ```root``` logins. Since you set up a default user with ```sudo``` privileges, you shouldn't allow remote logins to ```root```. Make these exact changes to the file.
+
+```bash
+#LoginGraceTime 2m
+PermitRootLogin no
+#StrictModes yes
+```
+
+Next, explicitly enforce public key authentication. Make these exact changes.
+
+```bash
+#MaxSessions 10
+
+PubkeyAuthentication yes
+```
+
+Because of the flaws above, we should no longer use password authentication. Therefore, we will also prohibit all authentication via passwords. Make these changes.
+
+```bash
+PasswordAuthentication yes
+#PermitEmptyPasswords no
+```
+
+Now, double-check your edits to ensure that you've made them correctly. Save and close the file once you've ensured they're implemented correctly. Restart the ```SSH``` daemon.
+
+```bash
+systemctl restart sshd
+```
+
+Then close the ```SSH``` connection.
+
+Now, log in again using the following command.
+
+```bash
+ssh exampleuser@yourserverip
+```
+
+If you set a private key, you should be prompted to type the password. Once you've decrypted it, you should be dropped into the shell on your server. If you didn't and you made a mistake, please fix it by using a ```KVM-over-IP``` solution that your hosting provider has provided you.
+
+## Change your root password.
+On the majority of hosting platforms, they assign a randomly assigned password to your ```root``` user upon installation of your server. It's generally good practice to change this password to a unique, random, and secure password of your choice.
+
+Generate a password using a utility like ```pwgen``` and then store it in your password manager. The longer and more random your password, the more secure it'll be.
+
+Next, escalate into your ```root``` user from your default user using this command.
+
+```bash
+sudo su
+```
+
+Now that you've escalated into your ```root``` user, execute this command to change their password.
+
+```bash
+passwd
+```
+
+The interactive prompt will ask you to change your root password twice to ensure you've entered it correctly.
+
+### I accidentally pasted my password into the shell.
+Make sure you always understand and look at what commands you're executing. However, mistakes do happen. If you entered your password mistakenly as a command into the ```bash shell```, then this will be kept in the ```.bash_history``` file.
+
+Thankfully, there's an easy utility to permanently erase this mistake from your server's disk. Run the following command.
+
+```bash
+shred --zero --remove ~/.bash_history
+```
+
+This command will effectively permanently erase the data and make it unrecoverable by most, if not all, disk forensics software.
+
+# Advanced security measures.
+Assuming that you've completed the baseline security measures, you may want to implement more advanced security measures to stop even the most sophisticated attackers from breaking into your server. These steps aren't easy and require an extremely careful and tailored installation.
+
+## Implement service controls.
+An extremely effective way to prevent malicious actors from breaking into your system is not only to shut the door but to also put up a privacy fence that they cannot see through or traverse. In simplest terms, an attacker can't attack you if they cannot reach the resources they need to launch their attack!
+
+There are two effective methods of doing this.
+
+### Firewall-based service controls.
+You may use the ```ufw``` firewall that we set up earlier to permit only certain ```IP addresses``` to connect to your servers ```SSH``` port.
+
+If your internet service provider doesn't provide static ```IP address``` reservations to its customers, I would caution against this, as you may unintentionally lock yourself out of your server without getting back in.
+
+First, find all your existing ```SSH``` rules in your firewall ruleset.
+
+```bash
+sudo ufw status numbered
+```
+
+Next, delete the rule(s) you selected from your ruleset by issuing this command. Be aware that the numbers mentioned by ```ufw``` above will decrease by one every time you delete a rule if the deleted rule comes before the other rules.
+
+```bash
+sudo ufw delete X
+```
+Now, add your new rule for your ```SSH``` port in ```ufw``` to only allow your ```IP address``` to connect.
+
+```bash
+sudo ufw allow from yourIPv4address proto tcp to any port 22
+```
+
+Check your firewall ruleset once again to ensure that the change you made was correct. Then, reload your firewall ruleset to rectify the changes.
+
+```bash
+sudo ufw reload
+```
+
+Now reconnect to your server over ```SSH```. The connection should've successfully gone through. However, if you made a mistake somewhere, you should use the built-in recovery console of your server through your hosting provider to revert these changes.
+
+### Creating your own intranet.
+Many hosting providers offer virtual private clouds, which are essentially shared private networks that machines can talk to each other privately on. So, hypothetically, if we add a server to this private network that has a ```Wireguard VPN``` that translates traffic from your home computer into traffic on the private network, you could log into your machines without even having these ports face the Internet. You'd have to firewall ```SSH``` to only be accessible from the private network interface on your servers.
+
+This is an extremely complicated endeavor that I will write a guide on in another edition. However, it's the most secure, convenient, and adaptable method by far. You may also apply this to other services that you only want a few trusted people to access, such as ```IMAP``` (an email retrieval protocol).
+
+I personally use and endorse this method for those who are able to implement it correctly.
