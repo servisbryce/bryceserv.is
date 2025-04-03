@@ -173,16 +173,16 @@ const about = {
 
 const blog = {
   label: "Blog",
-  title: "Writing about design and tech...",
-  description: `Read what ${person.name} has been up to recently`,
+  title: "My blogs.",
+  description: `Read what ${person.name} has been up to recently.`,
   // Create new blog posts by adding a new .mdx file to app/blog/posts
   // All posts will be listed on the /blog route
 };
 
 const projects = {
   label: "Projects",
-  title: "Projects",
-  description: `Design and dev projects by ${person.name}`,
+  title: "My projects.",
+  description: `Read what projects ${person.name} has been working on recently.`,
   // Create new project pages by adding a new .mdx file to app/blog/posts
   // All projects will be listed on the /home and /projects routes
 };
