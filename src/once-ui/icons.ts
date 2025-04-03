@@ -35,6 +35,8 @@ import {
   PiImageDuotone,
 } from "react-icons/pi";
 
+import { IoIosDocument } from "react-icons/io";
+
 import { FaDiscord, FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
 
 export const iconLibrary: Record<string, IconType> = {
@@ -68,5 +70,6 @@ export const iconLibrary: Record<string, IconType> = {
   x: FaXTwitter,
   clipboard: HiClipboard,
   arrowUpRightFromSquare: HiArrowTopRightOnSquare,
-  pgp: LuKeySquare
+  pgp: LuKeySquare,
+  doc: IoIosDocument
 };

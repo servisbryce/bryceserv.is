@@ -24,6 +24,11 @@ const social = [
     link: "/907873A1.asc",
   },
   {
+    name: "Resume",
+    icon: "doc",
+    link: "/resume.pdf",
+  },
+  {
     name: "GitHub",
     icon: "github",
     link: "https://github.com/servisbryce/",
