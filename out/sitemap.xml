@@ -2,19 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://bryceserv.is</loc>
-<lastmod>2025-03-29</lastmod>
+<lastmod>2025-04-03</lastmod>
 </url>
 <url>
 <loc>https://bryceserv.is/about</loc>
-<lastmod>2025-03-29</lastmod>
+<lastmod>2025-04-03</lastmod>
 </url>
 <url>
 <loc>https://bryceserv.is/projects</loc>
-<lastmod>2025-03-29</lastmod>
+<lastmod>2025-04-03</lastmod>
 </url>
 <url>
 <loc>https://bryceserv.is/blog</loc>
-<lastmod>2025-03-29</lastmod>
+<lastmod>2025-04-03</lastmod>
 </url>
 <url>
 <loc>https://bryceserv.is/blog/contactpreferences</loc>
@@ -23,6 +23,10 @@
 <url>
 <loc>https://bryceserv.is/blog/migratingawayfromvercel</loc>
 <lastmod>2025-03-23</lastmod>
+</url>
+<url>
+<loc>https://bryceserv.is/blog/securitymeasuresforavirtualprivateserver</loc>
+<lastmod>2025-04-02</lastmod>
 </url>
 <url>
 <loc>https://bryceserv.is/projects/bryceserv.is</loc>
