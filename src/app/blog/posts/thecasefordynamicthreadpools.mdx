@@ -1,0 +1,31 @@
+---
+
+title: "The Case for Dynamic Thread Pools"
+publishedAt: "2025-04-06"
+image: "/images/gallery/thecasefordynamicthreadpools.jpg"
+summary: "The reasons why you should consider using dynamic thread pools in your applications."
+tag: "Journal"
+
+---
+
+# What is a dynamic thread pool compared to a static thread pool?
+A static thread pool is an effective and flexible way to parallelize any task. It has an unchanging number of threads in a structure called a pool. A program may assign functions to these pools, and a thread will elect to compute an assigned function.
+
+On the contrary, a dynamic thread pool follows the same notion, except the number of threads in the pool may contract or expand depending on the program's priorities and preferences. A dynamic thread pool is significantly more scalable than a static one because if it becomes overloaded with tasks, it may request more threads to accommodate the increased load and then kill these threads when the load eventually decreases.
+
+# When should a dynamic thread pool be used?
+A dynamic thread pool should be used whenever the workload is unpredictable. Unpredictable workloads are typical in many types of applications, especially in applications that serve requests (servers). The ability for a thread pool to scale dynamically to accommodate an elevated but unanticipated demand is a much-preferred alternative to outright denying requests. However, there must be limits to prevent the dynamic thread pool from endlessly scaling itself up until it starts to overload the underlying operating system it's running on. Furthermore, the dynamic thread pool must also know when it's appropriate to scale down to prevent an excess of threads from accumulating that isn't going to be used.
+
+# What algorithms determine when to scale a dynamic thread pool?
+The stepwise scheduling algorithm is a standard method for determining when and how to scale dynamic thread pools. The stepwise scheduler is a straightforward yet effective way to scale the dynamic thread pool based on existing usage data without involving complex analysis. You must set a baseline thread target, regularly telling the algorithm the number of threads it wants in the pool whenever possible. Then, you must place a maximum for how many threads may be in the dynamic thread pool. Otherwise, you risk the dynamic thread pool from scaling up too much and taking down the entire operating system. The dynamic pool may not scale more than the maximum thread target. Finally, you must set a stepwise thread amount that tells the dynamic thread pool how much it should expand whenever it is at maximum load; the stepwise thread amount should be about 10% of the thread target and remain constant. However, your needs may change depending on your application.
+
+The stepwise scheduling algorithm assumes that whenever the thread pool is overloaded, instead of expanding the pool by the minimum amount necessary to accommodate the demand at that moment, it should overallocate the number of threads to accommodate for an increased trend in demand over a prolonged period. Stepwise scheduling is helpful for applications such as servers that often experience protracted periods of unanticipated traffic.
+
+# What are the tradeoffs for using a dynamic thread pool rather than a static thread pool?
+A static thread pool never has to worry about the performance impact of creating or killing threads, as it only has to make them once. However, when overloaded, a static thread pool is forced to deny requests rather than serve them, which leads to unreliability in your application during exceptionally high loads.
+
+Furthermore, suppose the dynamic thread pool is misconfigured. In that case, it may expand too aggressively and lead to system instability, resulting in requests being denied or the program outright crashing due to it starving from a lack of resources.
+
+However, a properly configured and supervised dynamic thread pool is a scalable alternative to outright denying requests and disrupting others. It's a much more favorable alternative to scale up temporarily to accommodate prolonged bursts in traffic than to turn away empty-handed users.
+
+Dynamic thread pools should not be used for applications with a constant or predictable workload, such as payroll or file backup systems. However, applications that have an unpredictable workload, such as web servers or streaming platforms. The dynamic thread pool must be configured to accommodate the balancing act between stability and raw processing power. If balanced improperly, the dynamic thread pool may cause the application to become unstable and prone to crashing. However, balancing this tradeoff is easy using the abovementioned stepwise algorithm.
