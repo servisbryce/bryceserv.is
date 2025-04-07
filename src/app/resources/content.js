@@ -123,55 +123,41 @@ const about = {
     ],
   },
   studies: {
-    display: false, // set to false to hide this section
-    title: "Studies",
+    display: true, // set to false to hide this section
+    title: "Education",
     institutions: [
       {
-        name: "University of Jakarta",
-        description: <>Studied software engineering.</>,
-      },
-      {
-        name: "Build the Future",
-        description: <>Studied online marketing and personal branding.</>,
+        name: "Metamora Township High School",
+        description: <>2022 to 2026.</>,
       },
     ],
   },
   technical: {
-    display: false, // set to false to hide this section
+    display: true, // set to false to hide this section
     title: "Technical skills",
     skills: [
       {
-        title: "Figma",
-        description: <>Able to prototype in Figma with Once UI with unnatural speed.</>,
+        title: "C",
+        description: <>I taught myself the C programming language early in 2025 to challenge myself and experiment with low-level programming. I am proficient in building multithreaded applications and socket programming.</>,
+        images: [],
+      },
+      {
+        title: "JavaScript",
+        description: <>I have practiced the JavaScript programming language for many years where I have created various full-stack applications on many different mediums and environments.</>,
+        images: [],
+      },
+      {
+        title: "Linux",
+        description: <>I've been using Linux as my operating system for many years across many different environments such as on physical servers, the desktop, and the cloud.</>,
         // optional: leave the array empty if you don't want to display images
         images: [
-          {
-            src: "/images/projects/project-01/cover-02.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-          {
-            src: "/images/projects/project-01/cover-03.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
         ],
       },
       {
-        title: "Next.js",
-        description: <>Building next gen apps with Next.js + Once UI + Supabase.</>,
-        // optional: leave the array empty if you don't want to display images
-        images: [
-          {
-            src: "/images/projects/project-01/cover-04.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-        ],
-      },
+        title: "Computer Hardware",
+        description: <>I built high-end personal computers for others as a paid hobby. Furthermore, I've built my own personal computer along with maintaining my servers and networking equipment.</>,
+        images: [],
+      }
     ],
   },
 };
