@@ -4,7 +4,7 @@ title: "libsocket"
 publishedAt: "2025-03-24"
 images:
   - "/images/gallery/libsocket.png"
-summary: "An application layer agnostic socket library designed for portability and performance."
+summary: "A server socket library designed to make socket programming easier."
 team:
   - name: "Bryce Servis"
     role: "Author"
@@ -20,12 +20,12 @@ A socket library reduces your program's design complexity, allowing you to focus
 Furthermore, you must also implement Transport Layer Security overtop of your application, doubling the complexity as now you must rewrite your code for OpenSSL.
 
 ## What makes your socket library different?
-My socket library is application layer and topology agnostic, meaning that you can opt to use encryption or avoid it entirely. You may also implement this socket library from a client or server perspective. You only have to configure the socket context to your liking, and then you may write your code once and have it work on both unencrypted traffic and encrypted traffic.
+My socket library provides nearly everything you need to get a reliable, performant, and secure socket server up and running within seconds. Any code that is repetitious is functionized and automated for the best development experience possible. 
 
-Furthermore, my socket library abstracts the process of creating contexts, binding to sockets, or reading and writing from said sockets. It's as simple and as streamlined as I could make it without encroaching on the developer experience.
+Furthermore, my socket library makes use of a thread pool that uses my own stepwise algorithm to automatically scale whenever necessary.
 
 # The developer experience.
-My socket library is highly robust and accessible. To start, create a socket context: you'll need the address you'll be binding to or connecting to, along with the port, and whether you will be acting as a server or a client. But wait, what if you want to add Transport Layer Security? Use the create Transport Layer Security function and plug in your socket context, certificate, and private key files, and you're ready to go; you don't even have to rewrite your old socket code for unencrypted traffic handling as it automatically adjusts to the new changes that you've made with the context.
+My server socket library provides an excellent foundation that is able to be started in just seconds with little to no effort. Fill out the parameters structure, pass it to the context generator, write a payload function, and then listen using that context and pass it the payload function. As soon as a user connects, the server handles the negotiations, your payload function is executed, and then the server closes the connection automatically.
 
 # My plans for the future.
-I plan on eventually implementing keepalives and concurrent socket handling through whatever avenue is the most performant and accessible. I will likely assign user-defined functions to run whenever a new socket is accepted on the server side. A user-defined function will run in just one thread over one socket on the client side.
+From my ventures in this project, I learned about thread pools which has inspired me to create my own scalable performant thread pool framework.
