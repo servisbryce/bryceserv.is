@@ -1,0 +1,24 @@
+---
+
+title: "Structured Data Transmission"
+publishedAt: "2025-04-13"
+image: "/images/gallery/structureddatatransmission.jpg"
+summary: "The various technologies and methods implemented to transmit data structures over the internet."
+tag: "Journal"
+
+---
+
+# What is structured data transmission?
+Structured data transmission is a way to transfer serialized data over the Internet in a structured manner. The Internet is built for data transfer; however, various protocols have limitations that must be worked around to compensate for multiple scenarios.
+
+# The maximum transfer buffer.
+There is a maximum transfer buffer for all sockets. The maximum transfer buffer length differs between programs and protocols, but generally, the agreed-upon maximum size is sixty-four megabytes. This transfer buffer limit means you can only write data smaller than or equal in length to the buffer transfer limit.
+
+# Chunked data transfer.
+A way to get around the maximum transfer buffer is by slicing our data transmission into several sequential chunks. We evenly divide our completed data by the maximum data transfer buffer limit and then mark each chunk with what part of the sequence it is. Then, the client reconstructs and reorders the data transmission using the segments received from the peer. 
+
+# Serialization.
+Serialization is storing complex objects, like structures, in a standardized manner, typically for ease of use. When transferring data, the Internet has little to no concept of data structures specific to one language. For portability and accessibility, we serialize these structures and encode their data into long strings that we can reconstruct on another machine. Serialization dramatically simplifies the transfer of structures between machines. However, there are some downsides to using serialization. Serialization is slow as it involves a lot of decoding, encoding, and translation from string to structure. Serialization also possesses substantial security overhead because you must interact with countless buffers, strings, and user-inputted data. You should generally use a trusted and battle-tested serialization library unless you are sure what you are doing. 
+
+# Alternatives to serialization.
+Alternatively, if you don't want to serialize your structures, you can always write the raw memory from the structures over the Internet. You shouldn't do this because of portability concerns. However, it is an option that is available to you. You'd need to demark the structure of the object so the program will know what structure you're trying to create. Then, you should demark the data length inserted into that structure. Lastly, after you've demarked the previous two pieces of metadata, you should append your raw data. Then, repeat for all the fields of your structure. Whenever a peer receives this data, it must first understand what kind of structure you're creating, and it will figure this out by using the demarkation you put in your transmission earlier. Then, it will find the length demarkation and then read the specified amount of bytes after that length demarker. It will repeat these last two steps for the transferred data.
