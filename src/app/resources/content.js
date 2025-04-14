@@ -155,7 +155,7 @@ const about = {
       },
       {
         title: "Computer Hardware",
-        description: <>I built high-end personal computers for others as a service. Furthermore, I've built my own personal computer along with maintaining my own server infrastructure and networking equipment.</>,
+        description: <>I built high-end personal computers for others as a service. Furthermore, I've built my own personal computer while maintaining and upgrading my own server infrastructure. I've also experimented with single-board computers like the Raspberry Pi.</>,
         images: [],
       }
     ],
