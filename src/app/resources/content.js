@@ -155,7 +155,7 @@ const about = {
       },
       {
         title: "Computer Hardware",
-        description: <>I built high-end personal computers for others as a paid hobby. Furthermore, I've built my own personal computer along with maintaining my servers and networking equipment.</>,
+        description: <>I built high-end personal computers for others as a service. Furthermore, I've built my own personal computer along with maintaining my own server infrastructure and networking equipment.</>,
         images: [],
       }
     ],
