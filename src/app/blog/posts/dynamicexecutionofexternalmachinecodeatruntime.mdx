@@ -1,0 +1,38 @@
+---
+
+title: "Dynamic Execution of External Machine Code at Runtime"
+publishedAt: "2025-04-15"
+image: "/images/gallery/dynamicexecutionofexternalmachinecodeatruntime.jpg"
+summary: "The execution of external machine code at runtime is typically a difficult endeavour. However, there's a convenient and reliable way of doing this."
+tag: "Journal"
+
+---
+
+# Why do you need to execute external machine code at runtime dynamically?
+I am designing a distributed computing system in which raw machine code is sent over a network for a worker peer to execute and transmit the result to the requester. The architecture in which the library file is compiled for is assumed to match the architecture of the worker peers. However, there was a significant roadblock in the development of said system: how would I dynamically run external machine code at runtime? The function signatures are to remain the same per the agreed protocol of the distributed computing system (the function signature takes a void pointer parameter and returns a void pointer parameter). I initially tried to read raw object files and execute them at runtime, which was not in the scope of my project because I soon realized I was trying to build a dynamic library loader. Thankfully, Linux has a fantastic dynamic library loader called ```dlfcn``` that does all the heavy lifting for us.
+
+# The dynamic library loader.
+The dynamic library loader, in short, reads a ```.so``` file and disassembles it. Then, pick and prod in the library for the function name you wish to execute. The dynamic library loader will automatically pull the machine code for said function from the shared object file and make it accessible via a function call. All that's left is to perform some casting to indicate that the pointer you just pulled out of the dynamic library loader is a function you can call (you must also specify parameters).
+
+The entire process may be summed up like this.
+```c
+/* Open the shared object file. */
+void *dynamic_library_context = dlopen("./mylibrary.so", RTLD_LAZY);
+
+/* Create the function signature. */
+void *(*myfunction)(void *myfunction_vargs_p);
+
+/* Rummage through the shared object file to find a function called myfunction. 
+   Then, load the machine code for that function into memory and output a pointer 
+   to it. Finally, assign said pointer to the function signature we created
+   earlier so the program knows this is a function call and not just a regular pointer. */
+*(void **)(&myfunction) = dlsym(dynamic_library_context, "myfunction");
+
+/* Call our newly created function! */
+myfunction(NULL);
+```
+
+# What are the advantages and disadvantages of doing this?
+There are many advantages to using the dynamic library loader compared to just blatantly running machine code you found in an object file. Using the dynamic library loader isn't as janky compared to loading external object files into memory and executing them haphazardly. The dynamic library loader is a battle-tested way to manage external functions rather than trying to roll your loader. There are also some unintentional benefits to using this approach to dynamically run external code at runtime, such as increased memory efficiency and smaller binaries.
+
+However, some significant disadvantages make this approach undesirable to some who may opt to use just-in-time compilation as an alternative. In general, the dynamically linked loader blindly allows you to import and execute libraries without oversight. The lack of oversight makes dynamic library loading extremely powerful and modular. However, it poses a significant security vulnerability as the library may be malicious or injected with malicious machine code that could easily compromise your system. Moreover, you must explicitly define the function signatures you use in the library, as you can't readily determine what parameters a function takes by just looking at its machine code (this is why header files exist for libraries). However, a solution to this is having all your library functions input and output void pointers. These void pointers may be used to point toward any piece of data (such as a structure containing an assortment of second-layer parameters).
