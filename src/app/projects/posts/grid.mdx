@@ -1,0 +1,39 @@
+---
+
+title: "Grid"
+publishedAt: "2025-04-19"
+images:
+  - "/images/gallery/grid.jpg"
+summary: "A distributed and centralized multithreaded computing system."
+team:
+  - name: "Bryce Servis"
+    role: "Author"
+    avatar: "/images/avatar.png"
+    linkedIn: "https://www.linkedin.com/in/bryce-servis-328381357"
+link: "https://github.com/servisbryce/grid"
+
+---
+
+# What's the general idea behind Grid?
+Grid is designed to effectively parallelize the execution of functions in no particular order across multiple different peer computers. You are to create a Grid server to which worker clients connect and wait to receive requests.
+
+Once you've assigned a request through the Grid servers' Unix socket using the provided helper program or your own C program, the server will assign the request to whichever machine is best suited at that moment.
+
+Then, the Grid server sends the request, and the worker-client receives the transmission from the server. The serialized transmission is resequenced, deserialized, and stored within memory. A file is written along with a memory buffer containing parameters for the function contained inside of the file.
+
+The dynamic loader then looks for a function called "main" from within the file received from the server. Once "main" is found, it's thrown into the thread pool along with its parameter memory buffer and executed.
+
+The function's results are then stored in a corresponding memory buffer and sent straight back to the server. The Grid server then sequences and deserializes the memory buffer and transmits the result to the requester.
+
+# How secure is it?
+Transport Layer Security (minimum version 1.2) secures the entire Grid protocol, which encrypts and verifies data sent and received by either party. We are to assume that the Grid server that gives requests to worker clients has its domain name to ensure the certificate's validity.
+
+If you wish, which I don't recommend, you may disable Transport Layer Security and run the program without any protections, which is extremely dangerous. If data is intercepted and modified, it could allow malicious actors to execute code on your system remotely.
+
+# How fast is it?
+The Grid protocol has been built from scratch. It's a verbose and serialized protocol built using C structures, which are then serialized and transmitted over a socket. These design choices make the Grid protocol blazingly fast, keeping latency as low as possible. Moreover, all functions are executed within a thread pool, providing strong multithreading capabilities.
+
+# How reliable is it?
+It's somewhat fragile at the moment (I'm still in the development phase) because if you have an inexcusable error from within a function, it may cause the entire Grid service to crash.
+
+However, I plan to have the program fork whenever an external function is running to prevent the entire Grid service from being taken down if the external function crashes.
