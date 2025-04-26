@@ -23,7 +23,7 @@ export const Footer = () => {
         horizontal="space-between"
         vertical="center"
       >
-        <Text variant="body-default-s" onBackground="neutral-strong">Published on April 19th, 2025.</Text>
+        <Text variant="body-default-s" onBackground="neutral-strong">Published on April 26th, 2025.</Text>
         <Flex gap="16">
           {social.map(
             (item) =>
