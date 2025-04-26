@@ -2,19 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://bryceserv.is</loc>
-<lastmod>2025-04-19</lastmod>
+<lastmod>2025-04-26</lastmod>
 </url>
 <url>
 <loc>https://bryceserv.is/about</loc>
-<lastmod>2025-04-19</lastmod>
+<lastmod>2025-04-26</lastmod>
 </url>
 <url>
 <loc>https://bryceserv.is/projects</loc>
-<lastmod>2025-04-19</lastmod>
+<lastmod>2025-04-26</lastmod>
 </url>
 <url>
 <loc>https://bryceserv.is/blog</loc>
-<lastmod>2025-04-19</lastmod>
+<lastmod>2025-04-26</lastmod>
 </url>
 <url>
 <loc>https://bryceserv.is/blog/contactpreferences</loc>
@@ -39,6 +39,10 @@
 <url>
 <loc>https://bryceserv.is/blog/thecasefordynamicthreadpools</loc>
 <lastmod>2025-04-06</lastmod>
+</url>
+<url>
+<loc>https://bryceserv.is/blog/theimportanceofsoftskills</loc>
+<lastmod>2025-04-26</lastmod>
 </url>
 <url>
 <loc>https://bryceserv.is/blog/whenshouldyouleverageartificalintelligence</loc>
