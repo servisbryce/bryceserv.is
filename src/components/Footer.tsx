@@ -1,6 +1,19 @@
 import { Flex, IconButton, SmartLink, Text } from "@/once-ui/components";
 import { person, social } from "@/app/resources/content";
 import styles from "./Footer.module.scss";
+const currentDate = new Date();
+
+function getCurrentDate(currentDate) {
+
+  return currentDate.toLocaleDateString('en-US', {
+
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+
+  });
+
+}
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -23,7 +36,9 @@ export const Footer = () => {
         horizontal="space-between"
         vertical="center"
       >
-        <Text variant="body-default-s" onBackground="neutral-strong">Published on April 27th, 2025.</Text>
+        <Text variant="body-default-s" onBackground="neutral-strong">
+          Published on {getCurrentDate(currentDate)}
+        </Text>
         <Flex gap="16">
           {social.map(
             (item) =>
