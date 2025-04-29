@@ -16,7 +16,6 @@ function getCurrentDate(currentDate) {
 }
 
 export const Footer = () => {
-  const currentYear = new Date().getFullYear();
 
   return (
     <Flex
@@ -55,7 +54,6 @@ export const Footer = () => {
           )}
         </Flex>
       </Flex>
-      <Flex height="80" show="s"></Flex>
     </Flex>
   );
 };
