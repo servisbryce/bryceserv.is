@@ -6,7 +6,7 @@ const person = {
   get name() {
     return `${this.firstName} ${this.lastName}`;
   },
-  role: "Hobbyist Programmer",
+  role: "Programmer",
   avatar: "/images/avatar.png",
   location: "US/Central", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
   languages: ["English"], // optional: Leave the array empty if you don't want to display languages
@@ -133,7 +133,7 @@ const about = {
     institutions: [
       {
         name: "Metamora Township High School",
-        description: <>2022 to 2026.</>,
+        description: <>2022 to 2026</>,
       },
     ],
   },

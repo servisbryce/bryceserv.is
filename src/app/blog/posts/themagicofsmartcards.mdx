@@ -1,0 +1,30 @@
+---
+
+title: "The Magic of Smartcards"
+publishedAt: "2025-05-05"
+image: "/images/gallery/themagicofsmartcards.png"
+summary: "In a collaborative work environment, those with exceptional soft skills have become increasingly saught after by employers."
+tag: "Journal"
+
+---
+
+# What's a smartcard?
+By definition, a smartcard is just any card that possesses an embedded chip within its frame. However, the types of smartcards that we'll be primarily focusing on are capable of running Java. These smartcards, or "Java Cards" by Oracle, are extremely powerful embedded computers capable of secure yet straightforward and portable operations at scale.
+
+These Java Cards are unlike any other portable computer because they have absolutely zero direct user interface; instead, they interact with other computers through surface contact on flat gold plates. Almost all of the time, the user has no idea that the smartcard they're using to perform various tasks is an embedded microcomputer that permits even those without experience operating a computer to use it. Moreover, they're incredibly robust as these chips are resistant to most forms of accidental damage, such as water damage and some instances of crushing.
+
+# What are the applications of smartcards?
+The original purpose of smartcards was to secure and isolate sensitive information, such as cryptographic secrets, within the chip. However, these smartcards have become an assortment of consumer products, such as credit cards, SIM cards, on-premise access control, and even vaccination verification cards during the COVID-19 pandemic.
+
+# Smartcards and cryptography.
+The most prominent use of smartcards is in securing cryptographic secrets such as private keys. By isolating your private keys on a smartcard, you can make them virtually unattainable by all digital attack vectors and most physical attacks. This security is thanks to the private key never having to leave the smart card; instead, all cryptographic operations are performed on the smart card directly, so the private key cannot be sniffed by software or hardware. However, one flaw in most smartcards for storing cryptographic secrets is the entropy problem. Entropy is just the mathematical randomness of random data within the Java Card computing apparatus.
+
+## The Entropy Problem.
+Randomness, or entropy, is a significant problem with Java cards in terms of cryptography. Java Cards are almost entirely isolated from the physical and digital world surrounding them; however, this isolation completely invalidates all randomness that could be generated on the Java Card. Statistically speaking, the dataset that the Java Card could use to generate randomness could be so predictable that an adversary could profile the randomness and regenerate private keys stored inside of the card outside of it. 
+
+To combat the entropy problem, we recommend generating these keypairs outside of the Java Card on another device with sufficient entropy for unpredictable private key generation.
+
+However, you must export these secrets from the device onto the Java Card; thus, the security of the Java Card is defeated for the duration of the transfer. So, this other device must be air-gapped (not connected to anything) and attestable (there isn't any malware or hardware tampering). Once you've transferred the keys, you must also completely erase all traces of these secrets from the other device so they only exist on the smartcard.
+
+# My conclusion.
+Smartcards are extremely useful for cryptography, and I use them to secure my sensitive data (through my Yubikey). They aren't perfect. However, there is no better alternative. A smartcard capable of generating reputable randomness would fix these issues and create a virtually ideal way to isolate and secure sensitive cryptographic secrets. In the past, you've seen standards such as [NIST SP 800-90A](https://en.wikipedia.org/wiki/NIST_SP_800-90A) (a random number generator implemented on some high-end smartcards) be subject to immense scrutiny due to their suspected government-implemented backdoors. Ultimately, much trust has been taken away from smartcards due to their vast corporate and governmental interest. Unfortunately, This technology is swamped with patents, intellectual property overreach, and closed-source software, leading to immense distrust by developers and users alike.
