@@ -37,6 +37,11 @@ const social = [
     name: "LinkedIn",
     icon: "linkedin",
     link: "https://www.linkedin.com/in/bryce-servis-328381357",
+  },
+  {
+    name: "Discord",
+    icon: "discord",
+    link: "https://discord.com/users/1343387932098035782",
   }
 ];
 
