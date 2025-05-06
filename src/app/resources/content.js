@@ -16,12 +16,12 @@ const social = [
   {
     name: "Email",
     icon: "email",
-    link: "mailto:bryceservis@bryceserv.is",
+    link: "mailto:bryce@bryceserv.is",
   },
   {
     name: "Pretty Good Privacy",
     icon: "pgp",
-    link: "/907873A1.asc",
+    link: "/9842EC1B.asc",
   },
   {
     name: "Resume",
