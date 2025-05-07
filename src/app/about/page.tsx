@@ -14,6 +14,7 @@ import { baseURL } from "@/app/resources";
 import TableOfContents from "@/components/about/TableOfContents";
 import styles from "@/components/about/about.module.scss";
 import { person, about, social } from "@/app/resources/content";
+import Clock from "@/components/Clock";
 
 export async function generateMetadata() {
   const title = about.title;
@@ -68,7 +69,7 @@ export default function About() {
     },
   ];
   return (
-    <Column maxWidth="m">
+    <Column maxWidth="l">
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -108,17 +109,39 @@ export default function About() {
           <Column
             className={styles.avatar}
             minWidth="160"
-            paddingX="l"
+            paddingX="s"
             paddingBottom="xl"
             gap="m"
             flex={3}
             horizontal="center"
           >
             <Avatar src={person.avatar} size="xl" />
-            <Flex gap="8" vertical="center">
-              <Icon onBackground="accent-weak" name="globe" />
-              {person.location}
-            </Flex>
+            <Column gap="s">
+              <Flex gap="s" horizontal="space-between">
+                <Flex gap="s">
+                  <Icon size="s" onBackground="accent-weak" name="loc" />
+                  {person.location}
+                </Flex>
+                <Flex gap="s">
+                  <Icon size="s" onBackground="accent-weak" name="time" />
+                  {person.timezone}
+                </Flex>
+              </Flex>
+              <Flex gap="s" horizontal="space-between">
+                <Flex gap="s">
+                  <Icon size="s" onBackground="accent-weak" name="birthday" />
+                  {person.birthday}
+                </Flex>
+                <Flex gap="s">
+                  <Icon size="s" onBackground="accent-weak" name="pronoun" />
+                  {person.pronouns}
+                </Flex>
+                <Flex gap="s">
+                  <Icon size="s" onBackground="accent-weak" name="mytime" />
+                  {<Clock />}
+                </Flex>
+              </Flex>
+            </Column>
             {person.languages.length > 0 && (
               <Flex wrap gap="8">
                 {person.languages.map((language, index) => (

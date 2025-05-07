@@ -100,13 +100,13 @@ export default function Home() {
       </RevealFx>
       {routes["/blog"] && (
         <Flex fillWidth gap="24" mobileDirection="column">
-          <Flex flex={1} paddingLeft="l">
+          <Flex flex={2} paddingLeft="1">
             <Heading as="h2" variant="display-strong-xs" wrap="balance">
-              Latest from the blog
+              My latest blog posts about technology, work, and life.
             </Heading>
           </Flex>
           <Flex flex={3} paddingX="20">
-            <Posts range={[1, 2]} columns="2" />
+            <Posts range={[1, 2]} columns="1" thumbnail/>
           </Flex>
         </Flex>
       )}

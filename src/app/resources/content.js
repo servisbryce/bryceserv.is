@@ -8,8 +8,11 @@ const person = {
   },
   role: "Programmer",
   avatar: "/images/avatar.png",
-  location: "US/Central", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
-  languages: ["English"], // optional: Leave the array empty if you don't want to display languages
+  location: "Illinois, United States",
+  languages: ["English"],
+  timezone: "Central Standard Time",
+  birthday: "April 23rd, 2008",
+  pronouns: "He/Him",
 };
 
 const social = [
@@ -65,7 +68,7 @@ const about = {
   description: `Meet ${person.name}, ${person.role} from ${person.location}`,
   tableOfContent: {
     display: true,
-    subItems: false,
+    subItems: true,
   },
   avatar: {
     display: true,
