@@ -1,0 +1,34 @@
+---
+
+title: "monitor"
+publishedAt: "2025-05-07"
+images:
+  - "/images/gallery/monitor.jpg"
+summary: "A simple yet powerful REST API to report and store various analytics about a machine's hardware to a centralized server and database."
+team:
+  - name: "Bryce Servis"
+    role: "Author"
+    avatar: "/images/avatar.png"
+    linkedIn: "https://www.linkedin.com/in/bryce-servis-328381357"
+link: "https://github.com/servisbryce/monitor"
+
+---
+
+# What's the general idea behind ```monitor```?
+Monitor is simple. There are two portions of the program: the server and the client. The server hosts various endpoints for clients to leverage to report data about themselves to the server. Thus, the server is in charge of verifying that the client is authorized to make changes and storing the data in a database for other programs.
+
+# What data does ```monitor``` collect from clients?
+Monitor collects various analytics regarding a machine's state and health. Specifically, it collects analytics regarding network interfaces and latency, mounted disks, memory usage, and processor usage. Moreover, all successful requests and changes are logged in the database for auditing later if necessary.
+
+# What technologies does ```monitor``` leverage?
+Monitor primarily leverages the "REST API" standard for all communications. All server-client networking is performed using "REST API" endpoints over "HTTP." For the database, I've opted to use a "SQLite" key-value store to make database operations robust and straightforward.
+
+# What do clients do?
+Clients are tasked with a few simple chores to do every so often. The client should measure various analytics regarding their hardware and health. If these values have changed, a timer will start reporting these changes to the server after a minute. During this minute grace period, all other changes will also be queued for submission until the grace period passes.
+
+# What do servers do?
+Well, servers are tasked with authentication, data storage, and managing client data submissions. All requests sent to the server must contain a valid token (a secret used to authenticate and identify a client). Otherwise, the request will be automatically denied.
+
+Once a client is authenticated, their request will be considered. If the request is valid and properly formatted, the server will then move on to actually storing the submitted analytics in the server's database.
+
+Once the submitted analytics are inserted into the database, any data that the client doesn't already have is returned to the client in a response along with a success status code.
