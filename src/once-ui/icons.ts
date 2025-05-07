@@ -33,12 +33,15 @@ import {
   PiGridFourDuotone,
   PiBookBookmarkDuotone,
   PiImageDuotone,
+  PiPauseDuotone,
+  PiPlayDuotone
 } from "react-icons/pi";
 import { IoIosDocument } from "react-icons/io";
 import { FaDiscord, FaGithub, FaLinkedin, FaXTwitter, FaLocationCrosshairs, FaRegCircle } from "react-icons/fa6";
 import { IoTimeSharp } from "react-icons/io5";
 import { FaFlagUsa, FaBirthdayCake } from "react-icons/fa";
 import { MdTimelapse } from "react-icons/md";
+import { GrInProgress } from "react-icons/gr";
 
 export const iconLibrary: Record<string, IconType> = {
   chevronUp: HiChevronUp,
@@ -79,4 +82,6 @@ export const iconLibrary: Record<string, IconType> = {
   birthday: FaBirthdayCake,
   pronoun: FaRegCircle,
   mytime: MdTimelapse,
+  in_progress: PiPlayDuotone,
+  paused: PiPauseDuotone
 };

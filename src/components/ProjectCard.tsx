@@ -8,6 +8,7 @@ import {
   Heading,
   SmartLink,
   Text,
+  Icon
 } from "@/once-ui/components";
 
 interface ProjectCardProps {
@@ -19,6 +20,21 @@ interface ProjectCardProps {
   description: string;
   avatars: { src: string }[];
   link: string;
+  in_progress: boolean;
+}
+
+function progressDisplay(in_progress) {
+
+  if (in_progress) {
+
+    return <Icon style={{ color: "green" }}name="in_progress"/>
+
+  } else {
+
+    return <Icon style={{ color: "orange" }} name="paused"/>
+
+  }
+
 }
 
 export const ProjectCard: React.FC<ProjectCardProps> = ({
@@ -29,6 +45,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
   description,
   avatars,
   link,
+  in_progress
 }) => {
   return (
     <Column fillWidth gap="m">
@@ -56,7 +73,13 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({
         )}
         {(avatars?.length > 0 || description?.trim() || content?.trim()) && (
           <Column flex={7} gap="16">
-            {avatars?.length > 0 && <AvatarGroup avatars={avatars} size="m" reverse />}
+            <Flex gap="m" vertical="center" horizontal="space-between">
+
+              {avatars?.length > 0 && <AvatarGroup avatars={avatars} size="m" reverse />}
+              {in_progress == true && <Flex gap="8" vertical="center"><Icon style={{ color: "green" }}name="in_progress"/><Text variant="label-default-s" onBackground="neutral-weak">Project underway.</Text></Flex>}
+              {in_progress == false && <Flex gap="8" vertical="center"><Icon style={{ color: "orange" }}name="paused"/><Text variant="label-default-s" onBackground="neutral-weak">Project completed.</Text></Flex>}
+
+            </Flex>
             {description?.trim() && (
               <Text wrap="balance" variant="body-default-s" onBackground="neutral-weak">
                 {description}

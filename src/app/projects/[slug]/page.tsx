@@ -34,6 +34,7 @@ export function generateMetadata({ params: { slug } }: projectsParams) {
     images,
     image,
     team,
+    in_progress
   } = post.metadata;
   let ogImage = image ? `https://${baseURL}${image}` : `https://${baseURL}/og?title=${title}`;
 
@@ -60,6 +61,7 @@ export function generateMetadata({ params: { slug } }: projectsParams) {
       description,
       images: [ogImage],
     },
+    in_progress
   };
 }
 
