@@ -38,11 +38,13 @@ const social = [
     icon: "linkedin",
     link: "https://www.linkedin.com/in/bryce-servis-328381357",
   },
-  {
+
+  /* Remove this for now. */
+  /*{
     name: "Discord",
     icon: "discord",
     link: "https://discord.com/users/1343387932098035782",
-  }
+  }*/
 ];
 
 const home = {
