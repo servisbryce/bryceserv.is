@@ -157,8 +157,14 @@ const about = {
         title: "Linux",
         description: <>I've been using Linux as my operating system for many years across many different environments such as on physical servers, the desktop, and the cloud.</>,
         // optional: leave the array empty if you don't want to display images
-        images: [
-        ],
+        images: [],
+      },
+      {
+
+        title: "Python",
+        description: <>I've recently started picking Python back up after an extended hiatus to utilize it in developing modular <code>REST API's</code> for collecting analytics and analyzing data.</>,
+        images: [],
+
       },
       {
         title: "Computer Hardware",
