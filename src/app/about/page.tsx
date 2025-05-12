@@ -241,14 +241,17 @@ export default function About() {
                 {about.projects.experiences.map((experience, index) => (
                   <Column key={`${experience.company}-${experience.role}-${index}`} fillWidth>
                     <Flex fillWidth horizontal="space-between" vertical="end" marginBottom="4">
-                      <Text id={experience.company} variant="heading-strong-l">
+                      <Text id={experience.company} variant="heading-strong-xl">
                         {experience.company}
                       </Text>
                       <Text variant="heading-default-xs" onBackground="neutral-weak">
                         {experience.timeframe}
                       </Text>
                     </Flex>
-                    <Text variant="body-default-s" onBackground="brand-weak" marginBottom="m">
+                    <Text id={experience.department} variant="body-default-l" marginBottom="s">
+                      {experience.division}
+                    </Text>
+                    <Text variant="body-strong-xl" marginBottom="s">
                       {experience.role}
                     </Text>
                     <Column as="ul" gap="16">

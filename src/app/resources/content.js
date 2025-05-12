@@ -6,7 +6,7 @@ const person = {
   get name() {
     return `${this.firstName} ${this.lastName}`;
   },
-  role: "Programmer",
+  role: "Information Technology Specialist",
   avatar: "/images/avatar.png",
   location: "Illinois, United States",
   languages: ["English"],
@@ -45,12 +45,12 @@ const social = [
 
 const home = {
   label: "Home",
-  title: `${person.name}'s Portfolio`,
-  description: `Portfolio website showcasing my projects as a ${person.role}`,
+  title: `${person.name}'s website`,
+  description: `My website showcasing my projects as a ${person.role}`,
   headline: <>Hello, <br></br>I'm Bryce.</>,
   subline: (
     <>
-      I am a hobbyist programmer and a student. I develop applications and libraries for Linux-based operating systems. But I also love tinkering and learning new technologies and languages to grow my skills as a programmer.
+      I am a information technology professional and a student. I develop applications and libraries for Linux-based operating systems. But I also love tinkering and learning new technologies and languages to grow my skills as a programmer and information technology specialist.
     </>
   ),
 };
@@ -75,18 +75,19 @@ const about = {
     title: "Introduction",
     description: (
       <>
-        I am a hobbyist programmer and a student. I develop applications and libraries for Linux-based operating systems. But I also love tinkering and learning new technologies and languages to grow my skills as a programmer.
+        I am a information technology professional and a student. I develop applications and libraries for Linux-based operating systems. But I also love tinkering and learning new technologies and languages to grow my skills as a information technology specialist.
       </>
     ),
   },
   projects: {
-    display: false, // set to false to hide this section
-    title: "projects Experience",
+    display: true, // set to false to hide this section
+    title: "Work",
     experiences: [
       {
-        company: "FLY",
-        timeframe: "2022 - Present",
-        role: "Senior Design Engineer",
+        company: "Caterpillar Inc.",
+        timeframe: "June of 2025",
+        role: "Information Technology Infrastructure Intern",
+        division: "Product Support and Logistics Division",
         achievements: [
           <>
             Redesigned the UI/UX for the FLY platform, resulting in a 20% increase in user
@@ -98,31 +99,9 @@ const about = {
           </>,
         ],
         images: [
-          // optional: leave the array empty if you don't want to display images
-          {
-            src: "/images/projects/project-01/cover-01.jpg",
-            alt: "Once UI Project",
-            width: 16,
-            height: 9,
-          },
+
         ],
-      },
-      {
-        company: "Creativ3",
-        timeframe: "2018 - 2022",
-        role: "Lead Designer",
-        achievements: [
-          <>
-            Developed a design system that unified the brand across multiple platforms, improving
-            design consistency by 40%.
-          </>,
-          <>
-            Led a cross-functional team to launch a new product line, contributing to a 15% increase
-            in overall company revenue.
-          </>,
-        ],
-        images: [],
-      },
+      }
     ],
   },
   studies: {
