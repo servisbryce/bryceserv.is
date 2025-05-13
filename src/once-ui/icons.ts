@@ -42,6 +42,7 @@ import { IoTimeSharp } from "react-icons/io5";
 import { FaFlagUsa, FaBirthdayCake } from "react-icons/fa";
 import { MdTimelapse } from "react-icons/md";
 import { GrInProgress } from "react-icons/gr";
+import { SiC, SiCaterpillar } from "react-icons/si";
 
 export const iconLibrary: Record<string, IconType> = {
   chevronUp: HiChevronUp,
@@ -83,5 +84,6 @@ export const iconLibrary: Record<string, IconType> = {
   pronoun: FaRegCircle,
   mytime: MdTimelapse,
   in_progress: PiPlayDuotone,
-  paused: PiPauseDuotone
+  paused: PiPauseDuotone,
+  cat: SiCaterpillar
 };

@@ -45,7 +45,7 @@ const social = [
 
 const home = {
   label: "Home",
-  title: `${person.name}'s website`,
+  title: `${person.name}'s Website`,
   description: `My website showcasing my projects as a ${person.role}`,
   headline: <>Hello, <br></br>I'm Bryce.</>,
   subline: (
@@ -88,18 +88,46 @@ const about = {
         timeframe: "June of 2025",
         role: "Information Technology Infrastructure Intern",
         division: "Product Support and Logistics Division",
+        icon: "cat",
+        link: "https://caterpillar.com",
         achievements: [
           <>
-            Redesigned the UI/UX for the FLY platform, resulting in a 20% increase in user
-            engagement and 30% faster load times.
-          </>,
-          <>
-            Spearheaded the integration of AI tools into design projectsflows, enabling designers to
-            iterate 50% faster.
-          </>,
+            Pending for now.
+          </>
         ],
         images: [
+          {
 
+            src: "/images/gallery/cat_press_kit_01.jpg",
+            alt: "Caterpillar Exhibition 1",
+            width: 16,
+            height: 9
+          
+          },
+          {
+
+            src: "/images/gallery/cat_press_kit_02.jpg",
+            alt: "Caterpillar Exhibition 2",
+            width: 16,
+            height: 9
+          
+          },
+          {
+
+            src: "/images/gallery/cat_press_kit_03.jpg",
+            alt: "Caterpillar Exhibition 3",
+            width: 16,
+            height: 9
+
+          },
+          {
+
+            src: "/images/gallery/cat_press_kit_04.jpg",
+            alt: "Caterpillar Exhibition 4",
+            width: 16,
+            height: 9
+
+          }
         ],
       }
     ],
