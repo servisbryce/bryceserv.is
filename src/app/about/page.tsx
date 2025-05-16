@@ -111,9 +111,9 @@ export default function About() {
             className={styles.avatar}
             minWidth="160"
             paddingX="s"
+            flex={3}
             paddingBottom="xl"
             gap="m"
-            flex={0}
             horizontal="center"
           >
             <Avatar src={person.avatar} size="xl" />
