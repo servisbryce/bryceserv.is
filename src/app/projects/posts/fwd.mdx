@@ -1,0 +1,27 @@
+---
+
+title: "fwd"
+publishedAt: "2025-05-15"
+images:
+  - "/images/gallery/fwd.jpg"
+summary: "A portable, minimal, and fast proxy application."
+team:
+  - name: "Bryce Servis"
+    role: "Author"
+    avatar: "/images/avatar.png"
+    linkedIn: "https://www.linkedin.com/in/bryce-servis-328381357"
+link: "https://github.com/servisbryce/fwd"
+in_progress: false
+
+---
+
+# What capabilities does ```fwd``` offer?
+```fwd``` has the capability to proxy any type of ```TCP``` traffic regardless of what it is. Moreover, it possesses the ability to transition anything toward or away from ```TLS```. You may proxy an unsecure connection to a secure connection, secure connection to a unsecure connection, and a secure connection to a secure connection (and vice versa).
+
+```fwd``` uses a thread pool to handle concurrent connections (rather than the ```fork``` and ```epoll``` method). You may assign any amount of threads and assign custom any certificates you'd like to use. 
+
+# My ambitions and goals.
+My primary ambitions with this project was to create an extremely portable and modular proxy application that could encrypt or decrypt connections depending on user configuration. User freedom to do whatever their wish was my primary goal.
+
+# Shortcomings, drawbacks, and future upgrades.
+At the time of writing ```fwd```, I didn't fully understand socket programming in C like I do now. There is a lot of logic and code I wish to improve, which I am going to overhaul eventually whenever I release a rewrite of this application with many new features and performance improvements.
