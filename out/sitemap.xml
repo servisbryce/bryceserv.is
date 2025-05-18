@@ -2,19 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>https://bryceserv.is</loc>
-<lastmod>2025-05-15</lastmod>
+<lastmod>2025-05-18</lastmod>
 </url>
 <url>
 <loc>https://bryceserv.is/about</loc>
-<lastmod>2025-05-15</lastmod>
+<lastmod>2025-05-18</lastmod>
 </url>
 <url>
 <loc>https://bryceserv.is/projects</loc>
-<lastmod>2025-05-15</lastmod>
+<lastmod>2025-05-18</lastmod>
 </url>
 <url>
 <loc>https://bryceserv.is/blog</loc>
-<lastmod>2025-05-15</lastmod>
+<lastmod>2025-05-18</lastmod>
 </url>
 <url>
 <loc>https://bryceserv.is/blog/contactpreferences</loc>
@@ -23,6 +23,10 @@
 <url>
 <loc>https://bryceserv.is/blog/dynamicexecutionofexternalmachinecodeatruntime</loc>
 <lastmod>2025-04-15</lastmod>
+</url>
+<url>
+<loc>https://bryceserv.is/blog/findingbalance</loc>
+<lastmod>2025-05-18</lastmod>
 </url>
 <url>
 <loc>https://bryceserv.is/blog/migratingawayfromvercel</loc>
@@ -59,6 +63,10 @@
 <url>
 <loc>https://bryceserv.is/projects/bryceserv.is</loc>
 <lastmod>2025-03-18</lastmod>
+</url>
+<url>
+<loc>https://bryceserv.is/projects/fwd</loc>
+<lastmod>2025-05-15</lastmod>
 </url>
 <url>
 <loc>https://bryceserv.is/projects/grid</loc>
