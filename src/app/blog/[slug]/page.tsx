@@ -74,7 +74,7 @@ export default function Blog({ params }: BlogParams) {
     })) || [];
 
   return (
-    <Column as="section" maxWidth="xs" gap="l">
+    <Column as="section" maxWidth="xs" gap="m">
       <script
         type="application/ld+json"
         suppressHydrationWarning
@@ -100,7 +100,8 @@ export default function Blog({ params }: BlogParams) {
       <Button href="/blog" weight="default" variant="tertiary" size="s" prefixIcon="chevronLeft">
         Posts
       </Button>
-      <Heading variant="display-strong-s">{post.metadata.title}</Heading>
+      <Heading marginBottom="0" variant="display-strong-s">{post.metadata.title}</Heading>
+      <Text variant="body-default-l" onBackground="neutral-weak">{post.metadata.summary}</Text>
       <Row gap="12" vertical="center">
         {avatars.length > 0 && <AvatarGroup size="s" avatars={avatars} />}
         <Text variant="body-default-s" onBackground="neutral-weak">
