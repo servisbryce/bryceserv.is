@@ -50,7 +50,7 @@ const home = {
   headline: <>Hello, <br></br>I'm Bryce.</>,
   subline: (
     <>
-      I am a information technology professional and a student. I develop applications and libraries for Linux-based operating systems. But I also love tinkering and learning new technologies and languages to grow my skills as a programmer and information technology specialist.
+      I am a information technology specialist and also a student. I develop applications and libraries for Linux-based operating systems. But I also love tinkering and learning new technologies and languages to grow my skills as a programmer and information technology specialist.
     </>
   ),
 };
@@ -75,7 +75,7 @@ const about = {
     title: "Introduction",
     description: (
       <>
-        I am a information technology professional and a student. I develop applications and libraries for Linux-based operating systems. But I also love tinkering and learning new technologies and languages to grow my skills as a information technology specialist.
+        I am a information technology specialist and a student. I develop applications and libraries for Linux-based operating systems. But I also love tinkering and learning new technologies and languages to grow my skills as a information technology specialist.
       </>
     ),
   },
